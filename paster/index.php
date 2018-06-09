@@ -9,9 +9,6 @@
     }
     
     $paster_name = "PasteR";
-    
-	$num1 = intval(rand(1, 9));
-	$num2 = intval(rand(1, 9));
 ?>
 <!doctype html>
 <html>
@@ -28,6 +25,8 @@
          
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        
+        <script src='https://www.google.com/recaptcha/api.js'></script>
 	</head>
 	<body>
     
@@ -82,17 +81,10 @@
                                     Content
                                 </div>
                             </div>
-                            <textarea type="text" name="content" placeholder="Content" rows="20" class="form-control" ></textarea>
+                            <textarea type="text" name="content" placeholder="Content" rows="15" class="form-control" ></textarea>
                         </div>
                         <br />
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <?php echo $num1; ?> + <?php echo $num2; ?> = <input type="hidden" name="result" value="<?php echo sha1(($num1 + $num2)); ?>" />
-                                </div>
-                            </div>
-                            <input type="text"  name="solution" autocomplete="off" class="form-control" />
-                        </div>
+                        <div class="g-recaptcha" data-sitekey="6LdiMF4UAAAAALXVSrQ3meofwzaNH4ZcHgkiaxw9"></div>
                         <br />
                         <input type="submit" name="submit" value="Create" class="btn btn-primary" />
                     </form>
