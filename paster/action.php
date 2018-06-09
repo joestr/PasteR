@@ -18,31 +18,31 @@
     // Formularübermittlung
 	if(isset($_POST["submit"])) {
         
-        if(!isset($_POST["title"]) || empty($_POST["title"])) {
+        $valid = true;
+        
+        if($valid && (!isset($_POST["title"]) || empty($_POST["title"]))) {
             
             $str_ = "Field 'title' has to be set.";
+            $valid = false;
         }
         
-        if(!isset($_POST["content"]) || empty($_POST["content"])) {
+        if($valid && (!isset($_POST["content"]) || empty($_POST["content"]))) {
             
             $str_ = "Field 'content' has to be set.";
+            $valid = false;
         }
         
-        if(!isset($_POST["solution"]) || empty($_POST["solution"])) {
+        if($valid && (!isset($_POST["g-recaptcha-response"]) || empty($_POST["g-recaptcha-response"]))) {
             
-            $str_ = "Field 'solution' has to be set.";
-        }
-        
-        if(sha1($_POST["solution"]) != $_POST["result"]) {
-            
-            $str_ = "Captcha wrong.";
+            $str_ = "Cpatcha failed";
+            $valid = false;
         }
         
         $checker = true;
         $counter = 0;
         $rand;
                     
-        while($checker == true && $counter < 10) {
+        while($valid && ($checker == true && $counter < 10)) {
             
             $rand = getRandomHex(4);
            
@@ -56,12 +56,13 @@
             }
         }
         
-        if($counter == 10) {
+        if($valid && ($counter == 10)) {
             
             $str_ = "Could not find any random Hex-Code during ten triey.";
+            $valid = false;
         }
         
-        if($checker == false) {
+        if($valid && ($checker == false)) {
             
             $dir = $paster_directory.$paster_webpath.$paster_pastes_directory;
             
