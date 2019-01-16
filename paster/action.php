@@ -58,7 +58,7 @@
         
         if($valid && ($counter == 10)) {
             
-            $str_ = "Could not find any random Hex-Code during ten triey.";
+            $str_ = "Could not find any random Hex-Code during ten tries.";
             $valid = false;
         }
         
